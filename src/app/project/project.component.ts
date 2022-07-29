@@ -22,4 +22,8 @@ export class ProjectComponent implements OnInit {
     let url = `https://picsum.photos/id/3${id}/1000/600/`;
     return url;
   }
+
+  getURI(id: string) {
+    return encodeURI(id);
+  }
 }
