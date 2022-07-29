@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserType } from '../interfaces/user.interface';
+import { ProjectService } from '../service/project.service';
 
 @Component({
   selector: 'app-project-detail',
@@ -8,16 +10,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProjectDetailComponent implements OnInit {
   name_project: string = '';
+  item: Partial<UserType> = {};
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private projectService: ProjectService,
+    private router: Router
+  ) {
     let id = '';
+    let name = '';
 
-    activatedRoute.params.subscribe(({ id: nameProject }) => {
-      id = nameProject;
+    activatedRoute.params.subscribe(({ name: nameProject, id: idProject }) => {
+      name = nameProject;
+      id = idProject;
     });
 
     this.name_project = decodeURI(id);
+    this.projectService.getProject(id).subscribe((data: any) => {
+      this.item = data;
+    });
   }
 
   ngOnInit(): void {}
+
+  goProject() {
+    this.router.navigate(['/project']);
+  }
 }

@@ -12,7 +12,7 @@
           {{ user.company.catchPhrase }}
         </p>
         <a
-          [routerLink]="'information/' + getURI(user.name)"
+          [routerLink]="'information/' + getURI(user.name) + '/' + user.id"
           class="btn btn-danger"
           >View Details</a
         >

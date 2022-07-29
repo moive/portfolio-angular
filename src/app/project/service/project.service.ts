@@ -14,7 +14,15 @@ export class ProjectService {
     return this.baseUrl + '/users';
   }
 
+  getUrlId(id: string) {
+    return this.baseUrl + '/users/' + id;
+  }
+
   getUsers() {
     return this.http.get<UserType>(this.url);
+  }
+
+  getProject(id: string) {
+    return this.http.get<UserType>(this.getUrlId(id));
   }
 }
