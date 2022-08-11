@@ -8,7 +8,7 @@ import { GlobalModule } from './shared/global/global.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, GlobalModule, HttpClientModule],
+  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), AppRoutingModule, GlobalModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
